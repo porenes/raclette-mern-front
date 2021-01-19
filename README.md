@@ -1,3 +1,18 @@
+# Raclette MERN Project - Front End
+Created woth create-react-app (see below)
+
+## packages added
+axios (for rest api requests)
+bootstrap (to make it pretty)
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
