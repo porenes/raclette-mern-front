@@ -23,9 +23,12 @@ const SignInForm = () => {
       },
     })
       .then((res) => {
-        console.log(res.data);
+        // login request works
+        localStorage.setItem("token", res.data.user.token);
         if (res.data.errors) {
+          // TODO handle errors properlu
         }
+        window.location ="/";
       })
       .catch((err) => {
         const errors = err.response.data.errors;
@@ -35,13 +38,12 @@ const SignInForm = () => {
           emailValidation.innerHTML = errors.email;
         }
         if (errors.password) {
-            setPasswordInvalid(true);
-            passwordValidation.innerHTML = errors.password;
+          setPasswordInvalid(true);
+          passwordValidation.innerHTML = errors.password;
         }
-        if (errors['email or password']) {
-            setPasswordInvalid(true);
-            passwordValidation.innerHTML = "email or password is invalid";
-
+        if (errors["email or password"]) {
+          setPasswordInvalid(true);
+          passwordValidation.innerHTML = "email or password is invalid";
         }
       });
   };
