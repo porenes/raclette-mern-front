@@ -12,7 +12,7 @@ function App() {
       const authHeader = "Bearer " + localStorage.getItem("token");
       await axios({
         method: "get",
-        url: `${process.env.REACT_APP_RACLETTE_API_URL}connoisseur/me`,
+        url: `${process.env.REACT_APP_RACLETTE_API_URL}connoisseur/uid`,
         headers: {
           Authorization: authHeader,
         },

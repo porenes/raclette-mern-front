@@ -1,9 +1,14 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import {UidContext} from "./AppContext";
+import { UidContext } from "./AppContext";
 
 const Navbar = () => {
   const uid = useContext(UidContext);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location = "/"
+  };
   return (
     // TODO manage active page
     <nav className="navbar navbar-expand-xl navbar-light bg-light">
@@ -23,7 +28,7 @@ const Navbar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <div className="navbar-nav">
-          <NavLink className="nav-item nav-link active" exact to="/">
+          <NavLink className="nav-item nav-link" exact to="/">
             Home <span className="sr-only">(current)</span>
           </NavLink>
 
@@ -34,14 +39,28 @@ const Navbar = () => {
           <NavLink className="nav-item nav-link" exact to="/connoisseurs">
             Connoisseurs
           </NavLink>
+          {uid ? (
+            <NavLink className="nav-item nav-link" exact to="/me">
+              Me
+            </NavLink>
+          ) : (
+            <span className="nav-item nav-link disabled">Me</span>
+          )}
         </div>
       </div>
 
       {uid ? (
-        <span className="navbar-text">Welcome to cheese heaver **name**</span>
+        <>
+          <span className="navbar-text">
+            Welcome to cheese heaver **name**
+            <a onClick={handleLogout} href="#">
+              <FontAwesomeIcon icon="sign-out-alt" />
+            </a>
+          </span>
+        </>
       ) : (
         <NavLink className="nav-item nav-link" exact to="/me">
-          ⇥
+          <FontAwesomeIcon icon="sign-in-alt" />
         </NavLink>
       )}
     </nav>
