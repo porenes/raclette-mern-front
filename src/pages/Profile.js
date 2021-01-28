@@ -5,7 +5,7 @@ import { UidContext } from "../components/AppContext";
 const Profile = () => {
   const uid = useContext(UidContext);
   return (
-    <div className="profile-page container">
+    <div className="container">
       {uid ? (
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
@@ -16,7 +16,7 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        <div className="login-container">
+        <div className="container ">
           <Login />
         </div>
       )}

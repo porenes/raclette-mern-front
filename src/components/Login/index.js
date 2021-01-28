@@ -17,26 +17,40 @@ const Login = () => {
     }
   };
   return (
-    <div className="connection-form">
-      <div className="form-container container">
-        <ul>
-          <li
-            onClick={handleModals}
-            id="register"
-            className={signUpModal ? "btn btn-primary" : "btn btn-secondary"}
+    <div className="container">
+      <div className="row">
+        <div className="col"></div>
+        <div className="col-6 text-center">
+          <div
+            className="btn-group"
+            role="group"
+            aria-label="Register or Login"
           >
-            Register
-          </li>
-          <li
-            onClick={handleModals}
-            id="login"
-            className={signInModal ? "btn btn-primary" : "btn btn-secondary"}
-          >
-            Login
-          </li>
-        </ul>
-        {signUpModal && <SignUpForm />}
-        {signInModal && <SignInForm />}
+            <button
+              onClick={handleModals}
+              id="register"
+              className={signUpModal ? "btn btn-primary" : "btn btn-secondary"}
+            >
+              Register
+            </button>
+            <button
+              onClick={handleModals}
+              id="login"
+              className={signInModal ? "btn btn-primary" : "btn btn-secondary"}
+            >
+              Login
+            </button>
+          </div>
+        </div>
+        <div className="col"></div>
+      </div>
+      <div className="row">
+        <div className="col"></div>
+        <div className="col-8 align-self-center">
+          {signUpModal && <SignUpForm />}
+          {signInModal && <SignInForm />}
+        </div>
+        <div className="col"></div>
       </div>
     </div>
   );
