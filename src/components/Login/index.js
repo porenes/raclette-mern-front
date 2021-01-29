@@ -46,7 +46,7 @@ const Login = () => {
       </div>
       <div className="row">
         <div className="col"></div>
-        <div className="col-8 align-self-center">
+        <div className="col-6 align-self-center">
           {signUpModal && <SignUpForm />}
           {signInModal && <SignInForm />}
         </div>

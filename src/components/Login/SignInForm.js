@@ -83,7 +83,7 @@ const SignInForm = () => {
         />
         <div className="invalid-feedback" id="password-validation"></div>
       </div>
-      <input type="submit" value="Login" />
+      <input type="submit" value="Login" className="btn" />
     </form>
   );
 };
