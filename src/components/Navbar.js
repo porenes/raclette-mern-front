@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { UidContext } from "./AppContext";
 
@@ -7,8 +8,9 @@ const Navbar = () => {
   const uid = useContext(UidContext);
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location = "/"
+    window.location = "/";
   };
+  const userData = useSelector((state) => state.userReducer);
   return (
     // TODO manage active page
     <nav className="navbar navbar-expand-xl navbar-light bg-light">
@@ -52,14 +54,18 @@ const Navbar = () => {
       {uid ? (
         <>
           <span className="navbar-text">
-            Welcome to cheese heaver **name**
-            <a onClick={handleLogout} href="#">
-              <FontAwesomeIcon icon="sign-out-alt" />
-            </a>
+            Welcome to cheese heaven {userData.name} &nbsp;
           </span>
+          <button
+            type="button"
+            className="btn btn-light"
+            onClick={handleLogout}
+          >
+            <FontAwesomeIcon icon="sign-out-alt" />
+          </button>
         </>
       ) : (
-        <NavLink className="nav-item nav-link" exact to="/me">
+        <NavLink className="btn btn-light" exact to="/me">
           <FontAwesomeIcon icon="sign-in-alt" />
         </NavLink>
       )}

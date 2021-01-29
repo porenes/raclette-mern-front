@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getUser } from "./actions/user.actions";
 import { UidContext } from "./components/AppContext";
 import Routes from "./components/Routes";
 
 function App() {
   //uid is a state so we have it all along the app
   const [uid, setUid] = useState(null);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const getUidFromToken = async () => {
@@ -25,7 +28,8 @@ function App() {
         .catch((err) => console.error("notoken"));
     };
     getUidFromToken();
-  }, [uid]);
+    (uid) && dispatch(getUser(uid))
+  }, [uid, dispatch]);
 
   // we need to update the uid state value, only when it changes
 
