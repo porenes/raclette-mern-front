@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { isEmpty } from "../../Utils";
 import Card from "../Post/Card";
 
 const Timeline = () => {
@@ -13,7 +14,7 @@ const Timeline = () => {
   return posts ? (
     <div>
       <ul>
-        {(posts) && (posts.map((post) => {
+        {!isEmpty(posts[0]) && (posts.map((post) => {
           return <Card post={post} />;
         }))}
       </ul>
