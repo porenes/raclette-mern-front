@@ -6,14 +6,14 @@ const Card = ({ post }) => {
       <div className="card-body">
         <h5 className="card-title">{post.authorId}</h5>
         <div className="card-text mb-2">{post.message}</div>
+      </div>
         {post.picture && (
           <img
             src={post.picture}
             alt=""
-            className="card-img-bottom img-fluid img-thumbnail mb-2"
+            className="card-img-bottom img-fluid"
           />
         )}
-      </div>
       <div className="card-footer">
         <span>
           <button className="btn">🧀</button>{" "}
