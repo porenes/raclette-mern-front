@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UidContext } from "../components/AppContext";
 import Timeline from "../components/Home/Timeline";
 import Login from "../components/Login";
+import CreatePost from "../components/Post/CreatePost";
 
 const Home = () => {
   const uid = useContext(UidContext);
@@ -12,6 +13,7 @@ const Home = () => {
         <div className="row">
           <div className="col-1"></div>
           <div className="col-8">
+            {uid && <CreatePost /> }
             <Timeline />
           </div>
           <div className="col">{uid ? "" : <Login signin={true} />}</div>
