@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { fromNow, isEmpty } from "../../Utils";
 import { UidContext } from "../AppContext";
+import CheesyLike from "./CheesyLike";
 import DeletePost from "./DeletePost";
 
 const Card = ({ post }) => {
@@ -23,7 +24,7 @@ const Card = ({ post }) => {
       )}
       <div className="card-footer">
         <span>
-          {uid && <button className="btn">🧀</button>} 
+          {uid && <CheesyLike id={post._id} likers={post.likers}/>} 
           <span>{post.likers ? post.likers.length : "0"} cheese(s)</span>
         </span>
 
