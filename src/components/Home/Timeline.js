@@ -13,9 +13,9 @@ const Timeline = () => {
   return posts ? (
     <div>
       <ul>
-        {posts.map((post) => {
+        {(posts) && (posts.map((post) => {
           return <Card post={post} />;
-        })}
+        }))}
       </ul>
     </div>
   ) : (
