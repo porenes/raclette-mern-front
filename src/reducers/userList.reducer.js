@@ -1,10 +1,10 @@
-import { GET_USER } from "../actions/user.actions";
+import { GET_USERS_LIST } from "../actions/user.actions";
 
 const initialState = {};
 
 const userReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_USER:
+    case GET_USERS_LIST:
       return payload;
 
     default:
