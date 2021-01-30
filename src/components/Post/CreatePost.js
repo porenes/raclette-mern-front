@@ -18,29 +18,27 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="card mb-3">
-      <div className="card-body">
-        <div className="card-text mb-2">
-          <div class="form-group">
-            <textarea
-              className="form-control"
-              name="message"
-              id="message"
-              rows="3"
-              onChange={(e) => setMessage(e.target.value)}
-              value={message}
-            ></textarea>
-          </div>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={handleCreatePost}
-          >
-            Send
-          </button>
-        </div>
+    <div className="row mb-2">
+      <div className="col-10">
+        <textarea
+          className="form-control"
+          name="message"
+          id="message"
+          rows="2"
+          placeholder="Say cheese..."
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
+        ></textarea>
       </div>
-      <div className="card-footer"></div>
+      <div className="col-2 align-self-center">
+        <button
+          type="button"
+          className="btn btn-primary float-middle "
+          onClick={handleCreatePost}
+        >
+          Send
+        </button>
+      </div>
     </div>
   );
 };
