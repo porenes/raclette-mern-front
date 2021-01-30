@@ -1,20 +1,14 @@
 import React, { useContext } from "react";
 import Login from "../components/Login";
 import { UidContext } from "../components/AppContext";
+import Me from "../components/Connoisseur/Me";
 
 const Profile = () => {
   const uid = useContext(UidContext);
   return (
     <div className="container">
       {uid ? (
-        <div className="jumbotron jumbotron-fluid">
-          <div className="container">
-            <h1 className="display-4">Name</h1>
-            <p className="lead">
-              You are awesome
-            </p>
-          </div>
-        </div>
+        <Me />
       ) : (
         <div className="container ">
           <Login />
