@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
-import { isEmpty } from "../../Utils";
+import { fromNow, isEmpty } from "../../Utils";
 import { UidContext } from "../AppContext";
 import DeletePost from "./DeletePost";
 
@@ -23,12 +23,11 @@ const Card = ({ post }) => {
       )}
       <div className="card-footer">
         <span>
-          {uid && <button className="btn">🧀</button>}
-          {post.likers ? post.likers.length : "0"} cheese(s)
+          {uid && <button className="btn">🧀</button>} 
+          <span>{post.likers ? post.likers.length : "0"} cheese(s)</span>
         </span>
-        <p>
-          <small className="text-muted">{post.createdAt}</small>
-        </p>
+
+        <small className="text-muted float-right">{fromNow(post.createdAt)}</small>
       </div>
     </div>
   );
