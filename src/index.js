@@ -2,9 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 // Redux imports
 import { applyMiddleware, createStore } from "redux";
-import rootReducer from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
+import rootReducer from "./reducers";
+import { listPosts } from "./actions/post.actions";
 // Thunk makes it possible to use async actions
 import thunk from "redux-thunk";
 // Font Awesome imports
@@ -22,6 +23,9 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+store.dispatch(listPosts());
+
 
 ReactDOM.render(
   <React.StrictMode>
