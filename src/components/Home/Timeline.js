@@ -13,11 +13,10 @@ const Timeline = () => {
 
   return posts ? (
     <div>
-      
-        {!isEmpty(posts[0]) && (posts.map((post) => {
-          return <Card post={post} />;
-        }))}
-      
+      {!isEmpty(posts[0]) &&
+        posts.map((post) => {
+          return <Card post={post} key={post.id} />;
+        })}
     </div>
   ) : (
     <div className="container">Nothing here</div>
