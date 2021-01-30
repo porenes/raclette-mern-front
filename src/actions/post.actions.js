@@ -2,6 +2,8 @@ import axios from "axios";
 
 export const LIST_POSTS = "LIST_POSTS";
 export const CREATE_POST = "CREATE_POST";
+export const DELETE_POST = "DELETE_POST";
+const authHeader = "Bearer " + localStorage.getItem("token");
 
 export const listPosts = () => {
   return (dispatch) => {
@@ -15,7 +17,6 @@ export const listPosts = () => {
 };
 export const createPost = (data) => {
   return (dispatch) => {
-    const authHeader = "Bearer " + localStorage.getItem("token");
     return axios({
       method: "post",
       url: `${process.env.REACT_APP_RACLETTE_API_URL}post/create`,
@@ -27,6 +28,22 @@ export const createPost = (data) => {
     }).then((res) => {
       //TODO handle res
       console.log(res);
+    });
+  };
+};
+
+export const deletePost = (id) => {
+  return (dispatch) => {
+    return axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_RACLETTE_API_URL}post/${id}`,
+      withCredentials: true,
+      headers: {
+        Authorization: authHeader,
+      },
+    }).then((res) => {
+      // Dispatch to delete the post from the current list
+      dispatch({ type: DELETE_POST, payload: { id } });
     });
   };
 };
