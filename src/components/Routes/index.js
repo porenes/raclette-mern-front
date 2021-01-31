@@ -14,8 +14,8 @@ import Navbar from "../Navbar";
 const index = () => {
   return (
     <Router>
-        <div className="container-fluid">
-        <Navbar />
+      <Navbar />
+      <div className="container-fluid">
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/parties" exact component={Parties} />
@@ -23,8 +23,8 @@ const index = () => {
           <Route path="/me" exact component={Profile} />
           <Redirect to="/" />
         </Switch>
-    </div>
-      </Router>
+      </div>
+    </Router>
   );
 };
 

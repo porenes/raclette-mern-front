@@ -13,7 +13,7 @@ const Navbar = () => {
   const userData = useSelector((state) => state.userReducer);
   return (
     // TODO manage active page
-    <nav className="navbar navbar-expand-xl navbar-light bg-light">
+    <nav className="navbar navbar-expand-xl navbar-dark bg-primary mb-1">
       <NavLink exact to="/" className="navbar-brand">
         Raclette Party 🧀🎉
       </NavLink>
@@ -58,14 +58,14 @@ const Navbar = () => {
           </span>
           <button
             type="button"
-            className="btn btn-light"
+            className="btn btn-primary"
             onClick={handleLogout}
           >
             <FontAwesomeIcon icon="sign-out-alt" />
           </button>
         </>
       ) : (
-        <NavLink className="btn btn-light" exact to="/me">
+        <NavLink className="btn btn-primary" exact to="/me">
           <FontAwesomeIcon icon="sign-in-alt" />
         </NavLink>
       )}
