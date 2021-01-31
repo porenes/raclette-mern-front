@@ -17,6 +17,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { getUsersList as listUsers } from "./actions/user.actions";
+import { listParties } from "./actions/party.action";
 
 // Adding font awesome solid
 library.add(fas);
@@ -30,6 +31,7 @@ const store = createStore(
 
 store.dispatch(listPosts());
 store.dispatch(listUsers());
+store.dispatch(listParties());
 
 ReactDOM.render(
   <React.StrictMode>
