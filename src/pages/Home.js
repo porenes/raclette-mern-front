@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UidContext } from "../components/AppContext";
 import Timeline from "../components/Home/Timeline";
 import Login from "../components/Login";
+import CreateParty from "../components/Party/CreateParty";
 import CreatePost from "../components/Post/CreatePost";
 
 const Home = () => {
@@ -16,7 +17,9 @@ const Home = () => {
             {uid && <CreatePost /> }
             <Timeline />
           </div>
-          <div className="col">{uid ? "" : <Login signin={true} />}</div>
+          <div className="col">{uid ? "" : <Login signin={true} />}
+            {uid && <CreateParty /> }
+          </div>
         </div>
       </div>
     </div>
