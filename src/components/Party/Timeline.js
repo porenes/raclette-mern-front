@@ -13,7 +13,7 @@ const Timeline = () => {
 
   return partiesState ? (
     <div className="row row-cols-3 row-md-3">
-      {(partiesState && !isEmpty(partiesState.parties[0]))
+      {(partiesState.parties && !isEmpty(partiesState.parties[0]))
         ? partiesState.parties.map((party) => {
             return (
               <Card party={party} users={partiesState.users} key={party._id} />
