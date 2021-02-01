@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Card = ({ party }) => {
+const Card = ({ party , users}) => {
   return (
     <div className="col mb-3">
       <div className="card">
@@ -10,7 +10,7 @@ const Card = ({ party }) => {
         <div className="card-body">
           <div className="card-text">
               <FontAwesomeIcon icon="door-open" />
-              {party.host}</div>
+              {users.find((user) => user._id ===party.host).name}</div>
           <button className="btn btn-secondary">Guests</button>
         </div>
       </div>
@@ -20,6 +20,7 @@ const Card = ({ party }) => {
 
 Card.propTypes = {
   party: PropTypes.object,
+  users: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Card;

@@ -15,7 +15,35 @@ export const listParties = () => {
       },
     })
       .then((res) => {
-        dispatch({ type: LIST_PARTIES, payload: res.data });
+        // * We get all userIds required to display properly info on Parties
+        const usersIds = [
+          ...new Set(
+            res.data.reduce((users, party) => {
+              users.push(party.host);
+              users.concat(party.guests.flat());
+              return users;
+            }, [])
+          ),
+        ];
+        axios({
+          method: "post",
+          url: `${process.env.REACT_APP_RACLETTE_API_URL}connoisseur/byIds`,
+          withCredentials: true,
+          headers: {
+            Authorization: authHeader,
+          },
+          data: {
+            ids: usersIds,
+          },
+        }).then((resUsers) => {
+          dispatch({
+            type: LIST_PARTIES,
+            payload: {
+              parties: res.data,
+              users: resUsers.data,
+            },
+          });
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -33,7 +61,29 @@ export const createParty = (data) => {
       data,
     })
       .then((res) => {
-        dispatch({ type: CREATE_PARTY, payload: res.data });
+        const party = res.data;
+        const ids = party.guests;
+        axios({
+          method: "post",
+          url: `${process.env.REACT_APP_RACLETTE_API_URL}connoisseur/byIds`,
+          withCredentials: true,
+          headers: {
+            Authorization: authHeader,
+          },
+          data: {
+            ids,
+          },
+        })
+          .then((partyUsers) => {
+            dispatch({
+              type: CREATE_PARTY,
+              payload: {
+                party,
+                partyUsers,
+              },
+            });
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
