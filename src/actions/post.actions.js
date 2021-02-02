@@ -1,7 +1,4 @@
 import axios from "axios";
-import { useContext } from "react";
-import { UidContext } from "../components/AppContext";
-
 export const LIST_POSTS = "LIST_POSTS";
 export const CREATE_POST = "CREATE_POST";
 export const DELETE_POST = "DELETE_POST";

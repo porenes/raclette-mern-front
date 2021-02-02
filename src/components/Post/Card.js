@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { fromNow, isEmpty } from "../../Utils";

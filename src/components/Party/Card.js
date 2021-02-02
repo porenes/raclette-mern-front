@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 
 const Card = ({ party, users }) => {
@@ -12,7 +11,8 @@ const Card = ({ party, users }) => {
         }'s`}</h5>
         <div className="card-body">
           <div className="card-text">
-            {party.guests.length} connoisseur(s) {(party.seats) && `out of ${party.seats} seats`}
+            {party.guests.length} connoisseur(s){" "}
+            {party.seats && `out of ${party.seats} seats`}
           </div>
           <button className="btn btn-secondary float-right">Details</button>
         </div>
