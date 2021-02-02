@@ -5,13 +5,17 @@ import { createParty, listParties } from "../../actions/party.action";
 const CreateParty = () => {
   const [date, setDate] = useState(Date.now());
   const [seats, setSeats] = useState(4);
+  const [alertCP, setAlertCP] = useState(null);
 
   const dispatch = useDispatch();
 
   const handleCreateParty = async (e) => {
-    await dispatch(createParty({ date, seats }));
-    dispatch(listParties());
-    cleanForm();
+    setAlertCP(null)
+    dispatch(createParty({ date, seats })).then(() => {
+      dispatch(listParties());
+      setAlertCP("Party created !");
+      cleanForm();
+    });
   };
 
   const cleanForm = () => {
@@ -19,11 +23,17 @@ const CreateParty = () => {
   };
 
   return (
-    <div className="container bg-light clearfix rounded p-2">
+    <div className="container bg-light rounded p-2">
+      {alertCP && (
+        <div className="alert alert-primary fade show" role="alert" id="cp-alert">
+          {alertCP}
+        </div>
+      )}
+      <h4>Invite your friends for some 🧀 !</h4>
       <div className="form-group">
         <label forHtml="date">Date</label>
         <input
-          type="date"
+          type="datetime-local"
           className="form-control"
           name="date"
           id="date"
@@ -35,7 +45,7 @@ const CreateParty = () => {
           Should be in the future
         </small>
       </div>
-      <div className="row">
+      <div className="row align-items-end">
         <div className="col">
           <div className="form-group">
             <label forHtml="seats">Seats</label>
@@ -50,14 +60,15 @@ const CreateParty = () => {
           </div>
         </div>
         <div className="col">
-          <label>&nbsp;</label>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={handleCreateParty}
-          >
-            Create 🎉
-          </button>
+          <div className="form-group text-center">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleCreateParty}
+            >
+              Create 🎉
+            </button>
+          </div>
         </div>
       </div>
     </div>
