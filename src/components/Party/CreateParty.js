@@ -1,17 +1,19 @@
+import moment from "moment";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createParty, listParties } from "../../actions/party.action";
 
 const CreateParty = () => {
-  const [date, setDate] = useState(Date.now());
-  const [seats, setSeats] = useState(4);
+  const [date, setDate] = useState(moment().format(moment.HTML5_FMT.DATETIME_LOCAL));
+  const [seats, setSeats] = useState(6);
+  const [isPrivate, setIsPrivate] = useState(true);
   const [alertCP, setAlertCP] = useState(null);
 
   const dispatch = useDispatch();
 
   const handleCreateParty = async (e) => {
-    setAlertCP(null)
-    dispatch(createParty({ date, seats })).then(() => {
+    setAlertCP(null);
+    dispatch(createParty({ date, seats, isPrivate })).then(() => {
       dispatch(listParties());
       setAlertCP("Party created !");
       cleanForm();
@@ -25,7 +27,11 @@ const CreateParty = () => {
   return (
     <div className="container bg-light rounded p-2">
       {alertCP && (
-        <div className="alert alert-primary fade show" role="alert" id="cp-alert">
+        <div
+          className="alert alert-primary fade show"
+          role="alert"
+          id="cp-alert"
+        >
           {alertCP}
         </div>
       )}
@@ -38,12 +44,25 @@ const CreateParty = () => {
           name="date"
           id="date"
           aria-describedby="partyDate"
-          placeholder="YYYY-MM-DD"
+          value={date}
           onChange={(e) => setDate(e.target.value)}
+          min={moment().format(moment.HTML5_FMT.DATETIME_LOCAL)}
         ></input>
         <small id="partyDate" className="form-text text-muted">
           Should be in the future
         </small>
+      </div>
+      <div className="form-group form-inline">
+        <input
+          type="checkbox"
+          className="form-check-input"
+          id="isPrivate"
+          checked={isPrivate}
+          onChange={() => setIsPrivate(!isPrivate)}
+        />
+        <label class="form-check-label" htmlFor="isPrivate">
+          Private party
+        </label>
       </div>
       <div className="row align-items-end">
         <div className="col">
@@ -55,6 +74,7 @@ const CreateParty = () => {
               name="seats"
               id="seats"
               aria-describedby="seatsHelp"
+              value={seats}
               onChange={(e) => setSeats(e.target.value)}
             />
           </div>
