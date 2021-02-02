@@ -31,7 +31,7 @@ const CreateParty = () => {
       )}
       <h4>Invite your friends for some 🧀 !</h4>
       <div className="form-group">
-        <label forHtml="date">Date</label>
+        <label htmlFor="date">Date</label>
         <input
           type="datetime-local"
           className="form-control"
@@ -48,7 +48,7 @@ const CreateParty = () => {
       <div className="row align-items-end">
         <div className="col">
           <div className="form-group">
-            <label forHtml="seats">Seats</label>
+            <label htmlFor="seats">Seats</label>
             <input
               type="number"
               className="form-control"
