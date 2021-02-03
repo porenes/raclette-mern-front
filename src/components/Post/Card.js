@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { fromNow, isEmpty } from "../../Utils";
 import { UidContext } from "../AppContext";
+import Woo from "../Connoisseur/Woo";
 import CheesyLike from "./CheesyLike";
 import DeletePost from "./DeletePost";
 
@@ -27,6 +28,7 @@ const Card = ({ post }) => {
           />
           &nbsp;{author && author.name}
           {uid === post.authorId && <DeletePost id={post._id} />}
+          {uid !== post.authorId && <Woo connoisseurId={post.authorId} />}
         </h5>
       </div>
       <div className="card-body">

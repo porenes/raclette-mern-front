@@ -41,7 +41,7 @@ const Me = () => {
             <div className="col-4 border">
               <h3 className="text-center">Parties hosted</h3>
               <ul className="list-unstyled">
-                {!isEmpty(partiesData.parties[0]) &&
+                {!isEmpty(partiesData.parties) &&
                   partiesData.parties.map((party) => {
                     return (
                       party.host === userData._id && (
@@ -54,7 +54,7 @@ const Me = () => {
             <div className="col-4 border">
               <h3 className="text-center">Parties going to</h3>
               <ul className="list-unstyled">
-                {!isEmpty(partiesData.parties[0]) &&
+                {!isEmpty(partiesData.parties) &&
                   partiesData.parties.map((party) => {
                     return (
                       party.guests.indexOf(userData._id) >= 0 &&
