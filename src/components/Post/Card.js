@@ -28,7 +28,7 @@ const Card = ({ post }) => {
           />
           &nbsp;{author && author.name}
           {uid === post.authorId && <DeletePost id={post._id} />}
-          {uid !== post.authorId && <Woo connoisseurId={post.authorId} />}
+          {uid !== post.authorId && <Woo author={author} />}
         </h5>
       </div>
       <div className="card-body">
