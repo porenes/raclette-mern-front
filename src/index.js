@@ -8,7 +8,6 @@ import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers";
-import { listPosts } from "./actions/post.actions";
 // Thunk makes it possible to use async actions
 import thunk from "redux-thunk";
 // Font Awesome imports
@@ -17,7 +16,6 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { getUsersList as listUsers } from "./actions/user.actions";
-import { listParties } from "./actions/party.action";
 
 // Adding font awesome solid
 library.add(fas);
@@ -29,9 +27,7 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-store.dispatch(listPosts());
 store.dispatch(listUsers());
-store.dispatch(listParties());
 
 ReactDOM.render(
   <React.StrictMode>
