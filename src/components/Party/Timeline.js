@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listParties } from "../../actions/party.action";
 import { isEmpty } from "../../Utils";
-import Card from "./Card";
+import PartyCard from "./PartyCard";
 
 const Timeline = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Timeline = () => {
       {!isEmpty(parties[0])
         ? parties.map((party) => {
             console.log("Card for ", party._id, " with users ", users);
-            return <Card party={party} key={party._id} />;
+            return <PartyCard party={party} key={party._id} />;
           })
         : "No parties"}
     </div>
