@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deletePost } from "../../actions/post.actions";
+import Button from "react-bootstrap/Button";
 
 const DeletePost = (props) => {
   const dispatch = useDispatch();
@@ -9,13 +10,15 @@ const DeletePost = (props) => {
   //TODO add warning before deletion
   const handleDelete = () => dispatch(deletePost(props.id));
   return (
-    <button
+    <Button
+      variant="outline-danger"
+      size="sm"
       type="button"
-      className="btn btn-outline-danger float-right btn-sm"
+      className="float-right"
       onClick={handleDelete}
     >
       <FontAwesomeIcon icon="trash-alt" />
-    </button>
+    </Button>
   );
 };
 

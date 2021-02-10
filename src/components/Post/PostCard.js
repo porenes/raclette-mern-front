@@ -5,17 +5,18 @@ import { UidContext } from "../AppContext";
 import Woo from "../Connoisseur/Woo";
 import CheesyLike from "./CheesyLike";
 import DeletePost from "./DeletePost";
+import Card from "react-bootstrap/Card";
 
-const Card = ({ post }) => {
+const PostCard = ({ post }) => {
   const uid = useContext(UidContext);
   const userListData = useSelector((state) => state.userListReducer);
   const author =
     !isEmpty(userListData[0]) &&
     userListData.find((user) => user._id === post.authorId);
   return (
-    <div className="card mb-3" id={post._id}>
+    <Card className="mb-3" id={post._id}>
       <div className="card-header p-2">
-        <h5 className="card-title mb-0">
+        <Card.Title className="mb-0">
           <img
             src={
               author.picture
@@ -29,15 +30,20 @@ const Card = ({ post }) => {
           &nbsp;{author && author.name}
           {uid === post.authorId && <DeletePost id={post._id} />}
           {uid !== post.authorId && <Woo author={author} />}
-        </h5>
+        </Card.Title>
       </div>
-      <div className="card-body">
-        <div className="card-text mb-2">{post.message}</div>
-      </div>
+      <Card.Body>
+        <Card.Text className="mb-2">{post.message}</Card.Text>
+      </Card.Body>
       {post.picture && (
-        <img src={post.picture} alt="" className="card-img-bottom img-fluid" />
+        <Card.Img
+          src={post.picture}
+          alt=""
+          variant="botton"
+          className="img-fluid"
+        />
       )}
-      <div className="card-footer">
+      <Card.Footer>
         <span>
           {uid && <CheesyLike id={post._id} likers={post.likers} />}
           <span>&nbsp;{post.likers ? post.likers.length : "0"} cheese(s)</span>
@@ -46,9 +52,9 @@ const Card = ({ post }) => {
         <small className="text-muted float-right">
           {fromNow(post.createdAt)}
         </small>
-      </div>
-    </div>
+      </Card.Footer>
+    </Card>
   );
 };
 
-export default Card;
+export default PostCard;
