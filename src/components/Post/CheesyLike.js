@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { UidContext } from "../AppContext";
 import { useDispatch } from "react-redux";
 import { likePost, unlikePost } from "../../actions/post.actions";
+import Button from "react-bootstrap/Button";
 
 const CheesyLike = (props) => {
   const uid = useContext(UidContext);
@@ -13,13 +14,15 @@ const CheesyLike = (props) => {
   const dispatch = useDispatch();
 
   const switchLike = () => {
-    liked ? dispatch(unlikePost(props.id, uid)) : dispatch(likePost(props.id, uid));
+    liked
+      ? dispatch(unlikePost(props.id, uid))
+      : dispatch(likePost(props.id, uid));
     setLiked(!liked);
   };
   return (
-    <button className={liked ? "btn btn-primary" : "btn"} onClick={switchLike}>
+    <Button variant={liked ? "primary" : "light"} onClick={switchLike}>
       🧀
-    </button>
+    </Button>
   );
 };
 
