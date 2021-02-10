@@ -2,18 +2,21 @@ import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { isEmpty } from "../../Utils";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const Me = () => {
   const userData = useSelector((state) => state.userReducer);
   const postsData = useSelector((state) => state.postsReducer);
   const partiesData = useSelector((state) => state.partiesReducer);
   return (
-    <div className="container mt-3">
-      <div className="row">
-        <div className="col-1"></div>
-        <div className="col">
-          <div className="row">
-            <div className="col-2 bg-light border border-right-0 rounded-left pl-0">
+    <Container className="mt-3">
+      <Row>
+        <Col className="col-1"></Col>
+        <Col>
+          <Row>
+            <Col className="col-2 bg-light border border-right-0 rounded-left pl-0">
               <img
                 src={
                   userData.picture
@@ -23,8 +26,8 @@ const Me = () => {
                 alt={userData.name}
                 className="rounded-left align-left"
               />
-            </div>
-            <div className="col bg-light rounded-right border border-left-0 align-item-center pt-1">
+            </Col>
+            <Col className="col bg-light rounded-right border border-left-0 align-item-center pt-1">
               <h2>{userData.name}</h2>
               <h5>Member since {userData.createdAt || "a lot of time"}</h5>
               <h6>
@@ -35,10 +38,10 @@ const Me = () => {
                   }).length}
                 &nbsp;post(s)
               </h6>
-            </div>
-          </div>
-          <div className="row mt-2 justify-content-around">
-            <div className="col-4 border">
+            </Col>
+          </Row>
+          <Row className="row mt-2 justify-content-around">
+            <Col className="col-4 border">
               <h3 className="text-center">Parties hosted</h3>
               <ul className="list-unstyled">
                 {!isEmpty(partiesData.parties) &&
@@ -50,8 +53,8 @@ const Me = () => {
                     );
                   })}
               </ul>
-            </div>
-            <div className="col-4 border">
+            </Col>
+            <Col className="col-4 border">
               <h3 className="text-center">Parties going to</h3>
               <ul className="list-unstyled">
                 {!isEmpty(partiesData.parties) &&
@@ -64,12 +67,12 @@ const Me = () => {
                     );
                   })}
               </ul>
-            </div>
-          </div>
-        </div>
-        <div className="col-1"></div>
-      </div>
-    </div>
+            </Col>
+          </Row>
+        </Col>
+        <Col className="col-1"></Col>
+      </Row>
+    </Container>
   );
 };
 

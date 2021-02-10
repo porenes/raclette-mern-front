@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
@@ -10,8 +12,8 @@ const SignInForm = () => {
   const [passwordInvalid, setPasswordInvalid] = useState(false);
 
   const handleLogin = (e) => {
-    setPasswordInvalid(false);
-    setEmailInvalid(false);
+    setPasswordInvalid(null);
+    setEmailInvalid(null);
     e.preventDefault();
     axios({
       method: "post",
@@ -28,63 +30,63 @@ const SignInForm = () => {
         if (res.data.errors) {
           // TODO handle errors properlu
         }
-        window.location ="/";
+        window.location = "/";
       })
       .catch((err) => {
         const errors = err.response.data.errors;
         console.log(errors);
         if (errors.email) {
-          setEmailInvalid(true);
-          emailValidation.innerHTML = errors.email;
+          setEmailInvalid(errors.email);
         }
         if (errors.password) {
-          setPasswordInvalid(true);
-          passwordValidation.innerHTML = errors.password;
+          setPasswordInvalid(errors.password);
         }
         if (errors["email or password"]) {
-          setPasswordInvalid(true);
-          passwordValidation.innerHTML = "email or password is invalid";
+          setPasswordInvalid("email or password is invalid");
         }
       });
   };
   return (
-    <form
+    <Form
       action=""
       onSubmit={handleLogin}
       id="sign-in-form"
       noValidate
       className="needs-validation"
     >
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
+      <Form.Group controlId="email">
+        <Form.Label>Email</Form.Label>
         <br />
-        <input
+        <Form.Control
           type="text"
           name="email"
           id="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
-          className={emailInvalid ? "form-control is-invalid" : "form-control"}
+          isInvalid={emailInvalid}
         />
-        <div className="invalid-feedback" id="email-validation"></div>
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
+        <Form.Control.Feedback type="invalid">
+          {emailInvalid}
+        </Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group controlId="password">
+        <Form.Label>Password</Form.Label>
         <br />
-        <input
+        <Form.Control
           type="password"
           name="password"
           id="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
-          className={
-            passwordInvalid ? "form-control is-invalid" : "form-control"
-          }
+          isInvalid={passwordInvalid}
         />
-        <div className="invalid-feedback" id="password-validation"></div>
-      </div>
-      <input type="submit" value="Login" className="btn" />
-    </form>
+
+        <Form.Control.Feedback type="invalid">
+          {passwordInvalid}
+        </Form.Control.Feedback>
+      </Form.Group>
+      <Button type="submit" >Login</Button>
+    </Form>
   );
 };
 

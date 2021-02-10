@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 const Login = (props) => {
   const [signUpModal, setSignUpModal] = useState(!props.signin);
@@ -16,28 +19,28 @@ const Login = (props) => {
     }
   };
   return (
-    <div className="container text-center">
-      <div className="btn-group" role="group" aria-label="Register or Login">
-        <button
+    <Container className="text-center">
+      <ButtonGroup role="group" aria-label="Register or Login">
+        <Button
           onClick={handleModals}
           id="register"
-          className={signUpModal ? "btn btn-primary" : "btn btn-secondary"}
+          variant={signUpModal ? "primary" : "secondary"}
         >
           Register
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={handleModals}
           id="login"
-          className={signInModal ? "btn btn-primary" : "btn btn-secondary"}
+          variant={signInModal ? "primary" : "secondary"}
         >
           Login
-        </button>
-      </div>
-      <div className="container">
+        </Button>
+      </ButtonGroup>
+      <Container>
         {signUpModal && <SignUpForm />}
         {signInModal && <SignInForm />}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 };
 

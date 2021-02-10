@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const SignUpForm = () => {
   const [name, setName] = useState("");
@@ -10,39 +12,32 @@ const SignUpForm = () => {
   const [emailErr, setEmailErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
   const [passConfErr, setPassConfErr] = useState(false);
-  const nameMess = document.getElementById("name-err");
-  const emailMess = document.getElementById("email-err");
-  const passwordMess = document.getElementById("password-err");
-  const passConfMEss = document.getElementById("pass-conf-err");
 
   const handleSignup = (e) => {
+    let error = false
     e.preventDefault();
     console.log("Entering handle signup");
-    setNameErr(false);
-    setEmailErr(false);
-    setPasswordErr(false);
-    setPassConfErr(false);
-    nameMess.innerHTML = "";
-    emailMess.innerHTML = "";
-    passwordMess.innerHTML = "";
-    passConfMEss.innerHTML = "";
+    setNameErr(null);
+    setEmailErr(null);
+    setPasswordErr(null);
+    setPassConfErr(null);
     if (!name) {
-      setNameErr(true);
-      nameMess.innerHTML = "You need a pseudo";
+      setNameErr("You need a pseudo");
+      error=true
     }
     if (!email) {
-      setEmailErr(true);
-      emailMess.innerHTML = "You need an email";
+      setEmailErr("You need an email");
+      error=true
     }
     if (!password) {
-      setPasswordErr(true);
-      passwordMess.innerHTML = "you need a password";
+      setPasswordErr("you need a password");
+      error=true
     }
     if (password !== passConf) {
-      setPassConfErr(true);
-      passConfMEss.innerHTML = "passwords do not match";
+      setPassConfErr("passwords do not match");
+      error=true
     }
-    if (!(nameErr || emailErr || passwordErr || passConfErr)) {
+    if (!error) {
       console.log("no form error so we call");
       axios({
         method: "post",
@@ -64,73 +59,75 @@ const SignUpForm = () => {
           const errors = err.response.data.errors;
           console.log(errors);
           if (errors.name) {
-            setNameErr(true);
-            nameMess.innerHTML = "Name already exists";
+            setNameErr("Name already exists");
           }
           if (errors.email) {
-            setEmailErr(true);
-            emailMess.innerHTML = "email already exists";
+            setEmailErr("email already exists");
           }
         });
     }
   };
 
   return (
-    <form
+    <Form
       action=""
       onSubmit={handleSignup}
       id="sign-up-form"
       noValidate
       className="needs-validation"
     >
-      <div className="form-group">
-        <label htmlFor="name">Pseudo</label>
-        <input
+      <Form.Group controlId="name">
+        <Form.Label>Pseudo</Form.Label>
+        <Form.Control
           type="text"
           onChange={(e) => setName(e.target.value)}
           name="name"
           id="name"
-          className={nameErr ? "form-control is-invalid" : "form-control"}
+          isInvalid={nameErr}
         />
-        <div className="invalid-feedback" id="name-err"></div>
-      </div>
-      <div class="form-group">
-        <label htmlFor="email">Email</label>
-        <input
+        <Form.Control.Feedback type="invalid">{nameErr}</Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group controlId="email">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
           type="text"
           onChange={(e) => setEmail(e.target.value)}
           name="email"
           id="email"
-          className={emailErr ? "form-control is-invalid" : "form-control"}
+          isInvalid={emailErr}
           placeholder="youremail@tld.fr"
           aria-describedby="emailHelp"
         />
-        <div className="invalid-feedback" id="email-err"></div>
-      </div>
-      <div class="form-group">
-        <label htmlFor="password">Password</label>
-        <input
+        <Form.Control.Feedback type="invalid">{emailErr}</Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group controlId="password">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
           type="password"
-          className={passwordErr ? "form-control is-invalid" : "form-control"}
+          isInvalid={passwordErr}
           name="password"
           id="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="invalid-feedback" id="password-err"></div>
-      </div>
-      <div className="form-group">
-        <label htmlFor="pass-conf">Confirm you password</label>
-        <input
+        <Form.Control.Feedback type="invalid">
+          {passwordErr}
+        </Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group controlId="pass-conf">
+        <Form.Label>Confirm you password</Form.Label>
+        <Form.Control
           type="password"
           name="pass-conf"
           id="pass-conf"
-          className={passConfErr ? "form-control is-invalid" : "form-control"}
+          isInvalid={passConfErr}
           onChange={(e) => setPassConf(e.target.value)}
         />
-        <div className="invalid-feedback" id="pass-conf-err"></div>
-      </div>
-      <input type="submit" value="Register" className="btn" />
-    </form>
+        <Form.Control.Feedback type="invalid">
+          {passConfErr}
+        </Form.Control.Feedback>
+      </Form.Group>
+      <Button type="submit">Register</Button>
+    </Form>
   );
 };
 
