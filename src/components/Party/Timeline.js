@@ -6,7 +6,7 @@ import Card from "./Card";
 
 const Timeline = () => {
   const dispatch = useDispatch();
-  const partiesState = useSelector((state) => state.partiesReducer);
+  const { parties, users } = useSelector((state) => state.partiesReducer);
   const [loadParties, setLoadParties] = useState(true);
 
   useEffect(() => {
@@ -16,13 +16,12 @@ const Timeline = () => {
     }
   }, [loadParties, dispatch]);
 
-  return partiesState ? (
+  return parties ? (
     <div className="row row-cols-3 row-md-3">
-      {partiesState.parties && !isEmpty(partiesState.parties[0])
-        ? partiesState.parties.map((party) => {
-            return (
-              <Card party={party} users={partiesState.users} key={party._id} />
-            );
+      {!isEmpty(parties[0])
+        ? parties.map((party) => {
+            console.log("Card for ", party._id, " with users ", users);
+            return <Card party={party} key={party._id} />;
           })
         : "No parties"}
     </div>

@@ -10,9 +10,11 @@ const Timeline = () => {
   const [loadPosts, setLoadPosts] = useState(true);
 
   useEffect(() => {
-    if (loadPosts) dispatch(listPosts());
-    setLoadPosts(false);
-  }, [loadPosts,dispatch]);
+    if (loadPosts) {
+      dispatch(listPosts());
+      setLoadPosts(false);
+    }
+  }, [loadPosts, dispatch]);
 
   return posts ? (
     <div>

@@ -1,6 +1,7 @@
 import axios from "axios";
 export const LIST_PARTIES = "LIST_PARTIES";
 export const CREATE_PARTY = "CREATE_PARTY";
+export const ADD_GUEST = "ADD_GUEST";
 
 const authHeader = "Bearer " + localStorage.getItem("token");
 
@@ -86,5 +87,20 @@ export const createParty = (data) => {
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
+  };
+};
+
+export const addGuest = (guestId, partyId) => {
+  return (dispatch) => {
+    const guests = [guestId];
+    return axios({
+      method: "put",
+      url: `${process.env.REACT_APP_RACLETTE_API_URL}party/addGuests/${partyId}`,
+      withCredentials: true,
+      headers: {
+        Authorization: authHeader,
+      },
+      data: { guests },
+    }).then((res) => dispatch({ type: ADD_GUEST, payload: res.data }));
   };
 };
