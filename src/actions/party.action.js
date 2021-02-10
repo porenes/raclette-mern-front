@@ -2,6 +2,7 @@ import axios from "axios";
 export const LIST_PARTIES = "LIST_PARTIES";
 export const CREATE_PARTY = "CREATE_PARTY";
 export const ADD_GUEST = "ADD_GUEST";
+export const DELETE_PARTY = "DELETE_PARTY";
 
 const authHeader = "Bearer " + localStorage.getItem("token");
 
@@ -102,5 +103,21 @@ export const addGuest = (guestId, partyId) => {
       },
       data: { guests },
     }).then((res) => dispatch({ type: ADD_GUEST, payload: res.data }));
+  };
+};
+
+export const deleteParty = (id) => {
+  return (dispatch) => {
+    return axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_RACLETTE_API_URL}party/${id}`,
+      withCredentials: true,
+      headers: {
+        Authorization: authHeader,
+      },
+    }).then((res) => {
+      // Dispatch to delete the post from the current list
+      dispatch({ type: DELETE_PARTY, payload: { id } });
+    });
   };
 };

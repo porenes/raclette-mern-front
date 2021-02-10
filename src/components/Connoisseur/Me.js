@@ -10,22 +10,23 @@ import { listParties } from "../../actions/party.action";
 import { getUsersList } from "../../actions/user.actions";
 import { useEffect } from "react";
 import { useState } from "react";
+import DeleteParty from "../Party/DeleteParty";
 
 const Me = () => {
   const userData = useSelector((state) => state.userReducer);
   const postsData = useSelector((state) => state.postsReducer);
   const partiesData = useSelector((state) => state.partiesReducer);
-  const [loadAll, setLoadAll] = useState(true)
-  const dispatch = useDispatch()
+  const [loadAll, setLoadAll] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if(loadAll) {
-      dispatch(listPosts())
-      dispatch(listParties())
-      dispatch(getUsersList())
+    if (loadAll) {
+      dispatch(listPosts());
+      dispatch(listParties());
+      dispatch(getUsersList());
     }
-    setLoadAll(false)
-  }, [loadAll, dispatch])
+    setLoadAll(false);
+  }, [loadAll, dispatch]);
 
   return (
     <Container className="mt-3">
@@ -65,7 +66,11 @@ const Me = () => {
                   partiesData.parties.map((party) => {
                     return (
                       party.host === userData._id && (
-                        <li key={party._id}>{moment(party.date).format("LL")} - {party.guests.length}/{party.seats}</li>
+                        <li key={party._id}>
+                          {moment(party.date).format("LL")} -{" "}
+                          {party.guests.length}/{party.seats}{" "}
+                          <DeleteParty id={party._id} />
+                        </li>
                       )
                     );
                   })}
@@ -79,7 +84,10 @@ const Me = () => {
                     return (
                       party.guests.indexOf(userData._id) >= 0 &&
                       party.host !== userData._id && (
-                        <li key={party._id}>{moment(party.date).format("LL")} - {party.guests.length}/{party.seats}</li>
+                        <li key={party._id}>
+                          {moment(party.date).format("LL")} -{" "}
+                          {party.guests.length}/{party.seats}
+                        </li>
                       )
                     );
                   })}

@@ -1,4 +1,4 @@
-import { ADD_GUEST, CREATE_PARTY, LIST_PARTIES } from "../actions/party.action";
+import { ADD_GUEST, CREATE_PARTY, DELETE_PARTY, LIST_PARTIES } from "../actions/party.action";
 
 const initialState = {};
 
@@ -26,6 +26,12 @@ const partiesReducer = (state = initialState, { type, payload }) => {
         }),
         users,
       };
+
+      case DELETE_PARTY:
+        return {
+          parties: parties.filter((party) => party._id !== payload.id),
+          users,
+        }
 
     default:
       return state;
