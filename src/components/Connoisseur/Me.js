@@ -65,7 +65,7 @@ const Me = () => {
                   partiesData.parties.map((party) => {
                     return (
                       party.host === userData._id && (
-                        <li>{moment(party.date).format("LL")} - {party.guests.length}/{party.seats}</li>
+                        <li key={party._id}>{moment(party.date).format("LL")} - {party.guests.length}/{party.seats}</li>
                       )
                     );
                   })}
@@ -79,7 +79,7 @@ const Me = () => {
                     return (
                       party.guests.indexOf(userData._id) >= 0 &&
                       party.host !== userData._id && (
-                        <li>{moment(party.date).format("LL")} - {party.guests.length}/{party.seats}</li>
+                        <li key={party._id}>{moment(party.date).format("LL")} - {party.guests.length}/{party.seats}</li>
                       )
                     );
                   })}
