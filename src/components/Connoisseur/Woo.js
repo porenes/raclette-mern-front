@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { unwoo, woo } from "../../actions/user.actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isEmpty } from "../../Utils";
+import Button from "react-bootstrap/Button";
 
 const Woo = ({ author }) => {
   const UNWOO = (
@@ -52,37 +53,35 @@ const Woo = ({ author }) => {
       : setIsWooer(false);
   }, [userData, author]);
 
-  if (!isEmpty(userData))
-    {return isWooed ? (
+  if (!isEmpty(userData)) {
+    return isWooed ? (
       isWooer ? (
-        <button
-          type="button"
-          className="btn btn-success float-right"
+        <Button
+          variant="success"
+          className="float-right"
           onClick={handleUnWoo}
           onMouseEnter={() => setCompeerText(UNWOO)}
           onMouseLeave={() => setCompeerText(COMPEER)}
         >
           {compeerText}
-        </button>
+        </Button>
       ) : (
-        <button
+        <Button
           type="button"
-          className="btn btn-primary float-right"
+          variant="primary"
+          className="float-right"
           onClick={handleUnWoo}
           onMouseEnter={() => setWooedText(UNWOO)}
           onMouseLeave={() => setWooedText(WOOED)}
         >
           {wooedText}
-        </button>
+        </Button>
       )
     ) : (
-      <button
+      <Button
         type="button"
-        className={
-          notWooedOver
-            ? "btn btn-primary float-right"
-            : "btn btn-secondary float-right"
-        }
+        variant={notWooedOver ? "primary" : "secondary"}
+        className="float-right"
         onClick={handleWoo}
         onMouseEnter={() => setNotWooedOver(true)}
         onMouseLeave={() => setNotWooedOver(false)}
@@ -94,8 +93,9 @@ const Woo = ({ author }) => {
         ) : (
           <>Woo ?</>
         )}
-      </button>
-    );}else return <></>
+      </Button>
+    );
+  } else return <></>;
 };
 
 Woo.propTypes = {
