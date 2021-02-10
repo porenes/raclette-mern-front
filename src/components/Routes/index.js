@@ -9,12 +9,12 @@ import Home from "../../pages/Home";
 import Parties from "../../pages/Parties.js";
 import Connoisseurs from "../../pages/Connoisseurs";
 import Profile from "../../pages/Profile";
-import Navbar from "../Navbar";
+import Navigation from "../Navigation";
 
 const index = () => {
   return (
     <Router>
-      <Navbar />
+      <Navigation />
       <div className="container-fluid">
         <Switch>
           <Route path="/" exact component={Home} />
