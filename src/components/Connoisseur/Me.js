@@ -1,15 +1,32 @@
 import React from "react";
 import moment from "moment";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "../../Utils";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { listPosts } from "../../actions/post.actions";
+import { listParties } from "../../actions/party.action";
+import { getUsersList } from "../../actions/user.actions";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Me = () => {
   const userData = useSelector((state) => state.userReducer);
   const postsData = useSelector((state) => state.postsReducer);
   const partiesData = useSelector((state) => state.partiesReducer);
+  const [loadAll, setLoadAll] = useState(true)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(loadAll) {
+      dispatch(listPosts())
+      dispatch(listParties())
+      dispatch(getUsersList())
+    }
+    setLoadAll(false)
+  }, [loadAll, dispatch])
+
   return (
     <Container className="mt-3">
       <Row>
