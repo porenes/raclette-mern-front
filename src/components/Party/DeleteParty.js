@@ -14,7 +14,6 @@ const DeleteParty = (props) => {
       variant="outline-danger"
       size="sm"
       type="button"
-      className="float-right"
       onClick={handleDelete}
     >
       <FontAwesomeIcon icon="trash-alt" />
