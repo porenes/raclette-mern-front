@@ -17,38 +17,41 @@ const Navigation = () => {
   return (
     // TODO manage active page
     <>
-      <Navbar bg="primary" expand="xl" variant="dark">
+      <Navbar bg="primary" expand="lg" variant="dark">
         <Navbar.Brand>Raclette Party 🧀🎉</Navbar.Brand>
-        <Nav>
-          <Nav.Link href="/">
-            Home <span className="sr-only">(current)</span>
-          </Nav.Link>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav>
+            <Nav.Link href="/">
+              Home <span className="sr-only">(current)</span>
+            </Nav.Link>
 
-          <Nav.Link href="/parties">Parties</Nav.Link>
+            <Nav.Link href="/parties">Parties</Nav.Link>
 
-          <Nav.Link href="/connoisseurs">Connoisseurs</Nav.Link>
-          {uid ? (
-            <Nav.Link href="/me">Me</Nav.Link>
-          ) : (
-            <Nav.Link disabled>Me</Nav.Link>
-          )}
-        </Nav>
-        <Navbar.Collapse className="justify-content-end">
-          {uid ? (
-            <>
+            <Nav.Link href="/connoisseurs">Connoisseurs</Nav.Link>
+            {uid ? (
+              <Nav.Link href="/me">Me</Nav.Link>
+            ) : (
+              <Nav.Link disabled>Me</Nav.Link>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+        {uid ? (
+          <>
+            <Nav className="justify-content-end">
               <Navbar.Text>
                 Welcome to cheese heaven {userData.name} &nbsp;
               </Navbar.Text>
-              <Button variant="primary" onClick={handleLogout}>
-                <FontAwesomeIcon icon="sign-out-alt" />
-              </Button>
-            </>
-          ) : (
-            <Button variant="primary" href="/me">
-              <FontAwesomeIcon icon="sign-in-alt" />
+            </Nav>
+            <Button variant="primary" onClick={handleLogout}>
+              <FontAwesomeIcon icon="sign-out-alt" />
             </Button>
-          )}
-        </Navbar.Collapse>
+          </>
+        ) : (
+          <Button variant="primary" href="/me">
+            <FontAwesomeIcon icon="sign-in-alt" />
+          </Button>
+        )}
       </Navbar>
     </>
   );

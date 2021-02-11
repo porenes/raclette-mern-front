@@ -15,7 +15,7 @@ const PostCard = ({ post }) => {
     userListData.find((user) => user._id === post.authorId);
   return (
     <Card className="mb-3" id={post._id}>
-      <div className="card-header p-2">
+      <Card.Header className="p-1">
         <Card.Title className="mb-0">
           <img
             src={
@@ -31,7 +31,7 @@ const PostCard = ({ post }) => {
           {uid === post.authorId && <DeletePost id={post._id} />}
           {uid !== post.authorId && <Woo author={author} />}
         </Card.Title>
-      </div>
+      </Card.Header>
       <Card.Body>
         <Card.Text className="mb-2">{post.message}</Card.Text>
       </Card.Body>
@@ -43,7 +43,7 @@ const PostCard = ({ post }) => {
           className="img-fluid"
         />
       )}
-      <Card.Footer>
+      <Card.Footer className="p-1">
         <span>
           {uid && <CheesyLike id={post._id} likers={post.likers} />}
           <span>&nbsp;{post.likers ? post.likers.length : "0"} cheese(s)</span>
