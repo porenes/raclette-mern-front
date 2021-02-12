@@ -6,6 +6,7 @@ import CreateParty from "../components/Party/CreateParty";
 import PartiesTimeline from "../components/Party/PartiesTimeline";
 import CreatePost from "../components/Post/CreatePost";
 import Container from "react-bootstrap/Container";
+import ProductsList from "../components/Products/ProductsList";
 
 const Home = () => {
   const uid = useContext(UidContext);
@@ -14,7 +15,9 @@ const Home = () => {
       <h1>We love Cheese</h1>
       <div className="container">
         <div className="row">
-          <div className="col-3"></div>
+          <div className="col-3">
+            <ProductsList />
+          </div>
           <div className="col-5">
             {uid && <CreatePost />}
             <Timeline />
