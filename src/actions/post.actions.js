@@ -19,6 +19,7 @@ export const listPosts = () => {
 };
 export const createPost = (data) => {
   return (dispatch) => {
+    console.log("entering post create");
     return axios({
       method: "post",
       url: `${process.env.REACT_APP_RACLETTE_API_URL}post/create`,
@@ -27,10 +28,17 @@ export const createPost = (data) => {
         Authorization: authHeader,
       },
       data,
-    }).then((res) => {
-      //TODO handle res
-      console.log(res);
-    });
+    })
+      .then((res) => {
+        dispatch({ type: CREATE_POST, payload: res.data });
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.error(err.response.data);
+        } else {
+          console.error(err);
+        }
+      });
   };
 };
 

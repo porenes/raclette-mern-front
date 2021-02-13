@@ -1,4 +1,5 @@
 import {
+  CREATE_POST,
   DELETE_POST,
   LIKE_POST,
   LIST_POSTS,
@@ -11,6 +12,10 @@ const postsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LIST_POSTS:
       return payload;
+
+    case CREATE_POST:
+      
+      return [payload, ...state];
 
     case DELETE_POST:
       return state.filter((post) => post._id !== payload.id);
@@ -30,7 +35,7 @@ const postsReducer = (state = initialState, { type, payload }) => {
         if (post._id === payload.postId) {
           return {
             ...post,
-            likers: post.likers.filter(liker => liker!==payload.likerId),
+            likers: post.likers.filter((liker) => liker !== payload.likerId),
           };
         }
         return post;

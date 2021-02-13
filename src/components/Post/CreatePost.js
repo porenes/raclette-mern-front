@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPost, listPosts } from "../../actions/post.actions";
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import Button from "react-bootstrap/Button"
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import { Form, FormControl } from "react-bootstrap";
 
 const CreatePost = () => {
   const [message, setMessage] = useState("");
@@ -11,9 +12,11 @@ const CreatePost = () => {
   const dispatch = useDispatch();
 
   const handleCreatePost = async (e) => {
-    await dispatch(createPost({ message }));
-    dispatch(listPosts());
-    cleanForm();
+    e.preventDefault();
+    if (message.length > 140) {
+      dispatch(createPost({ message }));
+      cleanForm();
+    }
   };
 
   const cleanForm = () => {
@@ -23,15 +26,21 @@ const CreatePost = () => {
   return (
     <Row className="mb-2">
       <Col className="col-10">
-        <textarea
-          className="form-control"
-          name="message"
-          id="message"
-          rows="2"
-          placeholder="Say cheese..."
-          onChange={(e) => setMessage(e.target.value)}
-          value={message}
-        ></textarea>
+        <Form.Group controlId="message">
+          <Form.Control
+            as="textarea"
+            name="message"
+            rows={3}
+            placeholder="Say cheese..."
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            isInvalid={message.length > 0 && message.length < 140}
+          ></Form.Control>
+          <FormControl.Feedback type="invalid">
+            On ne peut rien dire en moins de 140 caractères. Vous en avez{" "}
+            {message.length}
+          </FormControl.Feedback>
+        </Form.Group>
       </Col>
       <Col className="col-2 align-self-center">
         <Button
