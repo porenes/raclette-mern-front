@@ -6,8 +6,6 @@ import Button from "react-bootstrap/Button";
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const emailValidation = document.querySelector("#email-validation");
-  const passwordValidation = document.querySelector("#password-validation");
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
 
@@ -85,7 +83,7 @@ const SignInForm = () => {
           {passwordInvalid}
         </Form.Control.Feedback>
       </Form.Group>
-      <Button type="submit" >Login</Button>
+      <Button type="submit">Login</Button>
     </Form>
   );
 };

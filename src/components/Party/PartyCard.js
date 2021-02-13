@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import Invite from "./Invite";
-import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -19,28 +18,31 @@ const PartyCard = ({ party }) => {
 
   return (
     <>
-      <Col className="mb-3">
-        <Card className="card">
-          <Card.Header>{`${moment(party.date).format("LL")} at ${
-            users.find((user) => user._id === party.host).name
-          }'s`}</Card.Header>
-          <Card.Body>
-            <Card.Text>
-              {party.guests.length} connoisseur(s){" "}
-              {party.seats && `out of ${party.seats} seats`}
-            </Card.Text>
-            <Button
-              className="btn btn-secondary float-right"
-              onClick={(e) => setAddGuestsModal(!addGuestsModal)}
-              data-toggle="modal"
-              data-target={"#myModal" + party._id}
-            >
-              Add Guests
-            </Button>
-          </Card.Body>
-        </Card>
-      </Col>
-      <Modal show={addGuestsModal} onHide={handleClose}>
+      <Card key={party._id} className="mb-3">
+        <Card.Header>{`${moment(party.date).format("LL")} at ${
+          users.find((user) => user._id === party.host).name
+        }'s`}</Card.Header>
+        <Card.Body>
+          <Card.Text>
+            {party.guests.length} connoisseur(s){" "}
+            {party.seats && `out of ${party.seats} seats`}
+          </Card.Text>
+          <Button
+            className="btn btn-secondary float-right"
+            onClick={(e) => setAddGuestsModal(!addGuestsModal)}
+            data-toggle="modal"
+            data-target={"#myModal" + party._id}
+          >
+            Add Guests
+          </Button>
+        </Card.Body>
+      </Card>
+
+      <Modal
+        show={addGuestsModal}
+        onHide={handleClose}
+        key={"modal" + party._id}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Invite guests</Modal.Title>
         </Modal.Header>
@@ -50,6 +52,7 @@ const PartyCard = ({ party }) => {
               return (
                 <ListGroup.Item
                   variant={party.guests.includes(user._id) && "success"}
+                  key={user._id + party._id}
                 >
                   {user.name} -
                   {party.guests.includes(user._id) ? (

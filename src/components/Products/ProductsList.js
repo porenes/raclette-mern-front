@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardColumns, Container } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/products.action";
 import { isEmpty } from "../../Utils";
@@ -22,13 +22,12 @@ const ProductsList = () => {
           return (
             <Card>
               <Card.Img src={product.image_small_url} variant="top" />
-                <Card.Header>
-                  <Card.Title>
-                    {product.product_name + " - " + product.brands}
-                  </Card.Title>
-                </Card.Header>
-              <Card.Body>
-              </Card.Body>
+              <Card.Header>
+                <Card.Title>
+                  {product.product_name + " - " + product.brands}
+                </Card.Title>
+              </Card.Header>
+              <Card.Body></Card.Body>
             </Card>
           );
         })}
