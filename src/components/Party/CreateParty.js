@@ -21,7 +21,6 @@ const CreateParty = () => {
   const handleCreateParty = async (e) => {
     setAlertCP(null);
     dispatch(createParty({ date, seats, isPrivate })).then(() => {
-      dispatch(listParties());
       setAlertCP("Party created !");
       cleanForm();
     });
