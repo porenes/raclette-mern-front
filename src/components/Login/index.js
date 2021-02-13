@@ -26,14 +26,14 @@ const Login = (props) => {
           id="register"
           variant={signUpModal ? "primary" : "secondary"}
         >
-          Register
+          S'inscrire
         </Button>
         <Button
           onClick={handleModals}
           id="login"
           variant={signInModal ? "primary" : "secondary"}
         >
-          Login
+          Se connecter
         </Button>
       </ButtonGroup>
       <Container>

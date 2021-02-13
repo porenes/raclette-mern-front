@@ -24,8 +24,8 @@ const PartyCard = ({ party }) => {
         }'s`}</Card.Header>
         <Card.Body>
           <Card.Text>
-            {party.guests.length} connoisseur(s){" "}
-            {party.seats && `out of ${party.seats} seats`}
+            {party.guests.length} invité(s){" "}
+            {party.seats && `pour ${party.seats} poellons`}
           </Card.Text>
           <Button
             className="btn btn-secondary float-right"

@@ -41,7 +41,7 @@ const CreateParty = () => {
       >
         <p>{alertCP}</p>
       </Alert>
-      <h4>Invite your friends for some 🧀 !</h4>
+      <h4>Partagez votre 🧀 !</h4>
       <Form.Group controlId="date">
         <Form.Label>Date</Form.Label>
         <Form.Control
@@ -61,7 +61,7 @@ const CreateParty = () => {
             onChange={() => setIsPrivate(!isPrivate)}
             inline="true"
           />
-          <FormCheck.Label>Private party</FormCheck.Label>
+          <FormCheck.Label>Soirée VIP</FormCheck.Label>
         </Form.Check>
       </Form.Group>
       <Row className="align-items-end">
@@ -85,7 +85,7 @@ const CreateParty = () => {
               className="btn btn-primary"
               onClick={handleCreateParty}
             >
-              Create 🎉
+              Lancer 🎉
             </button>
           </Form.Group>
         </Col>

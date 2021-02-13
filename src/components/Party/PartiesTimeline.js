@@ -25,7 +25,7 @@ const PartiesTimeline = () => {
         : "No parties"}
     </>
   ) : (
-    <div className="container">Nothing here</div>
+    <div className="container">Rien à voir</div>
   );
 };
 

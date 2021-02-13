@@ -47,7 +47,7 @@ const Me = () => {
             </Col>
             <Col className="col bg-light rounded-right border border-left-0 align-item-center pt-1">
               <h2>{userData.name}</h2>
-              <h5>Member since {userData.createdAt || "a lot of time"}</h5>
+              <h5>Membre depuis {userData.createdAt || "longtemps"}</h5>
               <h6>
                 Wrote&nbsp;
                 {!isEmpty(postsData[0]) &&
@@ -60,7 +60,7 @@ const Me = () => {
           </Row>
           <Row className="row mt-2 justify-content-around">
             <Col className="col-4 border">
-              <h3 className="text-center">Parties hosted</h3>
+              <h3 className="text-center">Soirées organisées</h3>
               <ul className="list-unstyled">
                 {!isEmpty(partiesData.parties) &&
                   partiesData.parties.map((party) => {
@@ -77,7 +77,7 @@ const Me = () => {
               </ul>
             </Col>
             <Col className="col-4 border">
-              <h3 className="text-center">Parties going to</h3>
+              <h3 className="text-center">Invitations</h3>
               <ul className="list-unstyled">
                 {!isEmpty(partiesData.parties) &&
                   partiesData.parties.map((party) => {

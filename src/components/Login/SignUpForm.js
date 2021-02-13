@@ -101,7 +101,7 @@ const SignUpForm = () => {
         <Form.Control.Feedback type="invalid">{emailErr}</Form.Control.Feedback>
       </Form.Group>
       <Form.Group controlId="password">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Mot de passe</Form.Label>
         <Form.Control
           type="password"
           isInvalid={passwordErr}
@@ -114,7 +114,7 @@ const SignUpForm = () => {
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group controlId="pass-conf">
-        <Form.Label>Confirm you password</Form.Label>
+        <Form.Label>Confirmez votre mot de passe</Form.Label>
         <Form.Control
           type="password"
           name="pass-conf"
@@ -126,7 +126,7 @@ const SignUpForm = () => {
           {passConfErr}
         </Form.Control.Feedback>
       </Form.Group>
-      <Button type="submit">Register</Button>
+      <Button type="submit">S'inscrire</Button>
     </Form>
   );
 };

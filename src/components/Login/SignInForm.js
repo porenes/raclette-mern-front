@@ -68,7 +68,7 @@ const SignInForm = () => {
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group controlId="password">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Mot de passe</Form.Label>
         <br />
         <Form.Control
           type="password"
@@ -83,7 +83,7 @@ const SignInForm = () => {
           {passwordInvalid}
         </Form.Control.Feedback>
       </Form.Group>
-      <Button type="submit">Login</Button>
+      <Button type="submit">Connexion</Button>
     </Form>
   );
 };

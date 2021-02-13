@@ -49,7 +49,7 @@ const CreatePost = () => {
           className="float-middle "
           onClick={handleCreatePost}
         >
-          Send
+          Partager
         </Button>
       </Col>
     </Row>

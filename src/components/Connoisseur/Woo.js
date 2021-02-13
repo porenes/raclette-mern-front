@@ -9,17 +9,17 @@ import Button from "react-bootstrap/Button";
 const Woo = ({ author }) => {
   const UNWOO = (
     <>
-      <FontAwesomeIcon icon="heart-broken" /> Unwoo ?
+      <FontAwesomeIcon icon="heart-broken" /> Bouh
     </>
   );
   const WOOED = (
     <>
-      <FontAwesomeIcon icon="heart" /> Woo Woo
+      <FontAwesomeIcon icon="heart" /> J'adore
     </>
   );
   const COMPEER = (
     <>
-      <FontAwesomeIcon icon="heart" /> Compeer <FontAwesomeIcon icon="heart" />
+      <FontAwesomeIcon icon="heart" /> Compère <FontAwesomeIcon icon="heart" />
     </>
   );
 
@@ -88,7 +88,7 @@ const Woo = ({ author }) => {
       >
         {notWooedOver ? (
           <>
-            <FontAwesomeIcon icon="heart" /> Woo !
+            <FontAwesomeIcon icon="heart" /> Aimer !
           </>
         ) : (
           <>Woo ?</>

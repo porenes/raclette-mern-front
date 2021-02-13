@@ -11,7 +11,7 @@ const Invite = ({ partyId, guestId }) => {
   };
   return (
     <Button variant="success" onClick={invite}>
-      Invite
+      Inviter
     </Button>
   );
 };
