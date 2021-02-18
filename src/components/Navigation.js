@@ -21,9 +21,11 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <Nav.Link href="/parties">Soirées</Nav.Link>
             {uid ? (
+              <>
+            <Nav.Link href="/parties">Soirées</Nav.Link>
               <Nav.Link href="/me">Moi</Nav.Link>
+              </>
             ) : (
               <Nav.Link disabled>Moi</Nav.Link>
             )}
