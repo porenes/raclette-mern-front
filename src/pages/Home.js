@@ -42,7 +42,7 @@ const Home = () => {
               Il est temps de prendre le temps, d'apprécier les bonnes choses,
               l'amitié, le partage. Raclette Party et l'antithèse du réseau
               social tel qu'on le connait. Ici, il faut prendre son temps,
-              apprécier se échanges, et se rencontrer.
+              apprécier ses échanges, et se rencontrer.
             </p>
             <p>
               <Button variant="primary">S'inscrire</Button>
