@@ -8,12 +8,22 @@ const Timeline = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.postsReducer);
   const [loadPosts, setLoadPosts] = useState(true);
+  const loadMore = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >
+      document.scrollingElement.scrollHeight
+    ) {
+      setLoadPosts(true);
+    }
+  };
 
   useEffect(() => {
     if (loadPosts) {
-      dispatch(listPosts());
+      dispatch(listPosts(10));
       setLoadPosts(false);
     }
+    window.addEventListener("scroll", loadMore);
+    return () => window.removeEventListener("scroll", loadMore);
   }, [loadPosts, dispatch]);
 
   return posts ? (

@@ -7,10 +7,16 @@ export const UNLIKE_POST = "UNLIKE_POST";
 
 const authHeader = "Bearer " + localStorage.getItem("token");
 
-export const listPosts = () => {
-  return (dispatch) => {
+export const listPosts = (num = 10) => {
+  return (dispatch, getState) => {
+    // Getting the last post in the state
+    const listLength = getState().postsReducer.length;
+    let from = null;
+    if (listLength > 0) from = getState().postsReducer[listLength-1]._id;
+    //building query params based on that
+    const queryParams = `?num=${num}${from ? "&before=" + from : ""}`;
     return axios
-      .get(`${process.env.REACT_APP_RACLETTE_API_URL}post/`)
+      .get(`${process.env.REACT_APP_RACLETTE_API_URL}post/${queryParams}`)
       .then((res) => {
         dispatch({ type: LIST_POSTS, payload: res.data });
       })

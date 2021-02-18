@@ -6,12 +6,12 @@ import {
   UNLIKE_POST,
 } from "../actions/post.actions";
 
-const initialState = {};
+const initialState = [];
 
 const postsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LIST_POSTS:
-      return payload;
+      return [...state,...payload];
 
     case CREATE_POST:
       
