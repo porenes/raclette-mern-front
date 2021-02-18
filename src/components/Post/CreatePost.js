@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Form, FormControl } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CreatePost = () => {
   const [message, setMessage] = useState("");
@@ -24,8 +25,8 @@ const CreatePost = () => {
   };
 
   return (
-    <Row className="mb-2">
-      <Col className="col-10">
+    <Row className="mb-2" >
+      <Col>
         <Form.Group controlId="message">
           <Form.Control
             as="textarea"
@@ -42,14 +43,14 @@ const CreatePost = () => {
           </FormControl.Feedback>
         </Form.Group>
       </Col>
-      <Col className="col-2 align-self-center">
+      <Col className="align-self-center ml-1" sm={2}>
         <Button
           type="button"
           variant="primary"
-          className="float-middle "
+          className="float-middle"
           onClick={handleCreatePost}
         >
-          Partager
+          <FontAwesomeIcon icon="paper-plane" />
         </Button>
       </Col>
     </Row>

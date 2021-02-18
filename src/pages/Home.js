@@ -6,7 +6,7 @@ import PartiesTimeline from "../components/Party/PartiesTimeline";
 import CreatePost from "../components/Post/CreatePost";
 import Container from "react-bootstrap/Container";
 import ProductsList from "../components/Products/ProductsList";
-import { Button, Jumbotron } from "react-bootstrap";
+import { Button, Col, Jumbotron, Row } from "react-bootstrap";
 
 const Home = () => {
   const uid = useContext(UidContext);
@@ -16,23 +16,23 @@ const Home = () => {
         <>
           <h1>We love Cheese</h1>
 
-          <div className="container">
-            <div className="row">
-              <div className="col-3">
+          <Container fluid="lg">
+            <Row>
+              <Col sm={3}  className="d-xs-none">
                 <ProductsList />
-              </div>
-              <div className="col-5">
+              </Col>
+              <Col>
                 <CreatePost />
                 <Timeline />
-              </div>
-              <div className="col-4">
+              </Col>
+              <Col lg={3} className="d-sm-none d-md-block">
                 <CreateParty />
                 <Container className="bg-light rounded p-2">
                   <PartiesTimeline />
                 </Container>
-              </div>
-            </div>
-          </div>
+              </Col>
+            </Row>
+          </Container>
         </>
       ) : (
         <>
