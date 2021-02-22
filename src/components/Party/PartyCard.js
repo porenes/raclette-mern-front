@@ -20,7 +20,7 @@ const PartyCard = ({ party }) => {
     <>
       <Card key={party._id} className="mb-3">
         <Card.Header>{`${moment(party.date).format("LL")} at ${
-          users.find((user) => user._id === party.host).name
+          party.host.name
         }'s`}</Card.Header>
         <Card.Body>
           <Card.Text>
@@ -51,11 +51,14 @@ const PartyCard = ({ party }) => {
             {allUsers.map((user) => {
               return (
                 <ListGroup.Item
-                  variant={party.guests.includes(user._id) && "success"}
+                  variant={
+                    party.guests.some((guest) => guest._id === user._id) &&
+                    "success"
+                  }
                   key={user._id + party._id}
                 >
                   {user.name} -
-                  {party.guests.includes(user._id) ? (
+                  {party.guests.some((guest) => guest._id === user._id) ? (
                     "In"
                   ) : (
                     <Invite guestId={user._id} partyId={party._id} />
