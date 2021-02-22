@@ -65,7 +65,7 @@ const Me = () => {
                 {!isEmpty(partiesData.parties) &&
                   partiesData.parties.map((party) => {
                     return (
-                      party.host === userData._id && (
+                      party.host._id === userData._id && (
                         <li key={party._id}>
                           {moment(party.date).format("LL")} -{" "}
                           {party.guests.length}/{party.seats}{" "}
@@ -82,8 +82,10 @@ const Me = () => {
                 {!isEmpty(partiesData.parties) &&
                   partiesData.parties.map((party) => {
                     return (
-                      party.guests.indexOf(userData._id) >= 0 &&
-                      party.host !== userData._id && (
+                      party.guests.some(
+                        (guest) => guest._id === userData._id
+                      ) &&
+                      party.host._id !== userData._id && (
                         <li key={party._id}>
                           {moment(party.date).format("LL")} -{" "}
                           {party.guests.length}/{party.seats}

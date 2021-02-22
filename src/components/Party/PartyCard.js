@@ -9,7 +9,6 @@ import Modal from "react-bootstrap/Modal";
 import ListGroup from "react-bootstrap/ListGroup";
 
 const PartyCard = ({ party }) => {
-  const { users } = useSelector((state) => state.partiesReducer);
   const allUsers = useSelector((state) => state.userListReducer);
   const [addGuestsModal, setAddGuestsModal] = useState(false);
   const handleClose = () => {
