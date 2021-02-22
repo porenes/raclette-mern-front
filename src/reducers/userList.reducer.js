@@ -2,7 +2,7 @@ import { GET_USERS_LIST, UNWOO, WOO } from "../actions/user.actions";
 
 const initialState = {};
 
-const userReducer = (state = initialState, { type, payload }) => {
+const userListReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_USERS_LIST:
       return payload;
@@ -25,4 +25,4 @@ const userReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default userReducer;
+export default userListReducer;

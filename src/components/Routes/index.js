@@ -15,7 +15,7 @@ const index = () => {
   return (
     <Router>
       <Navigation />
-      <div className="container-fluid">
+      <div className="container-fluid bg-light">
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/parties" exact component={Parties} />

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Media, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/products.action";
 import { isEmpty } from "../../Utils";
@@ -16,28 +16,28 @@ const ProductsList = () => {
       setLoadProducts(false);
     }
   }, [loadProducts, dispatch]);
-  return (
+  return loadProducts ? (
+    <Spinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </Spinner>
+  ) : (
     <Container className="bg-light rounded p-2">
       <h5>Donnez votre avis !</h5>
       {!isEmpty(productsState[0]) &&
         productsState.map((product) => {
           return (
-            <Card className="mb-3 bg-dark text-white">
-              <Card.Img
-                src={product.image_small_url}
-                style={{ filter: "brightness(50%)" }}
-              />
-              <Card.ImgOverlay>
-                <Card.Text>n reviews</Card.Text>
-              </Card.ImgOverlay>
-              <Card.Header>
-                <Card.Title>{product.product_name}</Card.Title>
-                <Card.Subtitle>
-                  <FontAwesomeIcon icon="box" />
-                  {" " + product.brands}
-                </Card.Subtitle>
-              </Card.Header>
-            </Card>
+            <>
+              <Media key={product._id} className="p-3">
+                <img src={product.image_small_url} alt={product._id} height="1%" width="20%"className="align-self-center mr-3"/>
+                <Media.Body>
+                  <h6>
+                    {product.product_name} - <FontAwesomeIcon icon="box" />
+                    {" " + product.brands}
+                  </h6>
+                </Media.Body>
+              </Media>
+              <hr/>
+            </>
           );
         })}
     </Container>

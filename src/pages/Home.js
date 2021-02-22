@@ -11,14 +11,12 @@ import { Button, Col, Jumbotron, Row } from "react-bootstrap";
 const Home = () => {
   const uid = useContext(UidContext);
   return (
-    <div>
+    <>
       {uid ? (
         <>
-          <h1>We love Cheese</h1>
-
-          <Container fluid="lg">
+          <Container fluid="lg" className="pt-3">
             <Row>
-              <Col sm={3}  className="d-xs-none">
+              <Col sm={3} className="d-xs-none">
                 <ProductsList />
               </Col>
               <Col>
@@ -50,7 +48,7 @@ const Home = () => {
           </Jumbotron>
         </>
       )}
-    </div>
+    </>
   );
 };
 

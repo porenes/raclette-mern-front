@@ -6,6 +6,7 @@ import Woo from "../Connoisseur/Woo";
 import CheesyLike from "./CheesyLike";
 import DeletePost from "./DeletePost";
 import Card from "react-bootstrap/Card";
+import { Media } from "react-bootstrap";
 
 const PostCard = ({ post }) => {
   const uid = useContext(UidContext);
@@ -17,19 +18,23 @@ const PostCard = ({ post }) => {
     <Card className="mb-3" id={post._id}>
       <Card.Header className="p-1">
         <Card.Title className="mb-0">
-          <img
-            src={
-              author.picture
-                ? author.picture
-                : `https://robohash.org/${author._id}.png?size=120x120&set=set5`
-            }
-            alt={author.name}
-            className="rounded-circle border"
-            height="50px"
-          />
-          &nbsp;{author && author.name}
-          {uid === post.authorId && <DeletePost id={post._id} />}
-          {uid !== post.authorId && <Woo author={author} />}
+          <Media>
+            <img
+              src={
+                author.picture
+                  ? author.picture
+                  : `https://robohash.org/${author._id}.png?size=120x120&set=set5`
+              }
+              alt={author.name}
+              className="rounded-circle border"
+              height={36}
+            />
+            <Media.Body className="align-self-center">
+              &nbsp;{author && author.name}
+            </Media.Body>
+            {uid === post.authorId && <DeletePost id={post._id} />}
+            {uid !== post.authorId && <Woo author={author} />}
+          </Media>
         </Card.Title>
       </Card.Header>
       <Card.Body>

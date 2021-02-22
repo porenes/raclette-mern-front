@@ -23,8 +23,8 @@ const Navigation = () => {
           <Nav>
             {uid ? (
               <>
-            <Nav.Link href="/parties">Soirées</Nav.Link>
-              <Nav.Link href="/me">Moi</Nav.Link>
+                <Nav.Link href="/parties">Soirées</Nav.Link>
+                <Nav.Link href="/me">Moi</Nav.Link>
               </>
             ) : (
               <Nav.Link disabled>Moi</Nav.Link>
