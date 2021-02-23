@@ -14,7 +14,7 @@ const SignUpForm = () => {
   const [passConfErr, setPassConfErr] = useState(false);
 
   const handleSignup = (e) => {
-    let error = false
+    let error = false;
     e.preventDefault();
     console.log("Entering handle signup");
     setNameErr(null);
@@ -23,19 +23,19 @@ const SignUpForm = () => {
     setPassConfErr(null);
     if (!name) {
       setNameErr("You need a pseudo");
-      error=true
+      error = true;
     }
     if (!email) {
       setEmailErr("You need an email");
-      error=true
+      error = true;
     }
     if (!password) {
       setPasswordErr("you need a password");
-      error=true
+      error = true;
     }
     if (password !== passConf) {
       setPassConfErr("passwords do not match");
-      error=true
+      error = true;
     }
     if (!error) {
       console.log("no form error so we call");
@@ -82,8 +82,8 @@ const SignUpForm = () => {
           type="text"
           onChange={(e) => setName(e.target.value)}
           name="name"
-          id="name"
           isInvalid={nameErr}
+          autoComplete="nickname"
         />
         <Form.Control.Feedback type="invalid">{nameErr}</Form.Control.Feedback>
       </Form.Group>
@@ -93,10 +93,10 @@ const SignUpForm = () => {
           type="text"
           onChange={(e) => setEmail(e.target.value)}
           name="email"
-          id="email"
           isInvalid={emailErr}
           placeholder="youremail@tld.fr"
           aria-describedby="emailHelp"
+          autoComplete="email"
         />
         <Form.Control.Feedback type="invalid">{emailErr}</Form.Control.Feedback>
       </Form.Group>
@@ -106,8 +106,8 @@ const SignUpForm = () => {
           type="password"
           isInvalid={passwordErr}
           name="password"
-          id="password"
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="password"
         />
         <Form.Control.Feedback type="invalid">
           {passwordErr}
@@ -118,9 +118,9 @@ const SignUpForm = () => {
         <Form.Control
           type="password"
           name="pass-conf"
-          id="pass-conf"
           isInvalid={passConfErr}
           onChange={(e) => setPassConf(e.target.value)}
+          autoComplete="password"
         />
         <Form.Control.Feedback type="invalid">
           {passConfErr}

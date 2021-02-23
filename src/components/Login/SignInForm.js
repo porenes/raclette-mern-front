@@ -58,10 +58,10 @@ const SignInForm = () => {
         <Form.Control
           type="text"
           name="email"
-          id="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           isInvalid={emailInvalid}
+          autoComplete="email"
         />
         <Form.Control.Feedback type="invalid">
           {emailInvalid}
@@ -73,10 +73,10 @@ const SignInForm = () => {
         <Form.Control
           type="password"
           name="password"
-          id="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           isInvalid={passwordInvalid}
+          autoComplete="password"
         />
 
         <Form.Control.Feedback type="invalid">
