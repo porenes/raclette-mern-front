@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
+import { Media } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import { useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 import { fromNow, isEmpty } from "../../Utils";
 import { UidContext } from "../AppContext";
-import Woo from "../Connoisseur/Woo";
 import CheesyLike from "./CheesyLike";
 import DeletePost from "./DeletePost";
-import Card from "react-bootstrap/Card";
-import { Media } from "react-bootstrap";
 
 const PostCard = ({ post }) => {
   const uid = useContext(UidContext);
@@ -29,11 +29,12 @@ const PostCard = ({ post }) => {
               className="rounded-circle border"
               height={36}
             />
-            <Media.Body className="align-self-center">
-              &nbsp;{author && author.name}
-            </Media.Body>
+            <LinkContainer to={`/connoisseur/${post.authorId}`}>
+              <Media.Body className="align-self-center">
+                &nbsp;{author && author.name}
+              </Media.Body>
+            </LinkContainer>
             {uid === post.authorId && <DeletePost id={post._id} />}
-            {uid !== post.authorId && <Woo author={author} />}
           </Media>
         </Card.Title>
       </Card.Header>
