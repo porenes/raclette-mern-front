@@ -5,6 +5,7 @@ import { UidContext } from "./AppContext";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Navigation = () => {
   const uid = useContext(UidContext);
@@ -17,14 +18,20 @@ const Navigation = () => {
     // TODO manage active page
     <>
       <Navbar bg="primary" expand="lg" variant="dark">
-        <Navbar.Brand href="/">Raclette Party 🧀🎉</Navbar.Brand>
+        <LinkContainer to="/" exact>
+          <Navbar.Brand>Raclette Party 🧀🎉</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
             {uid ? (
               <>
-                <Nav.Link href="/parties">Soirées</Nav.Link>
-                <Nav.Link href="/me">Moi</Nav.Link>
+                <LinkContainer to="/parties">
+                  <Nav.Link>Soirées</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/me">
+                  <Nav.Link>Moi</Nav.Link>
+                </LinkContainer>
               </>
             ) : (
               <Nav.Link disabled>Moi</Nav.Link>
@@ -43,9 +50,11 @@ const Navigation = () => {
             </Button>
           </>
         ) : (
-          <Button variant="primary" href="/me">
-            <FontAwesomeIcon icon="sign-in-alt" />
-          </Button>
+          <LinkContainer to="/me">
+            <Button variant="primary">
+              <FontAwesomeIcon icon="sign-in-alt" />
+            </Button>
+          </LinkContainer>
         )}
       </Navbar>
     </>
