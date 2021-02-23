@@ -26,24 +26,21 @@ const ProductsList = () => {
       {!isEmpty(productsState[0]) &&
         productsState.map((product) => {
           return (
-            <>
-              <Media key={product._id} className="p-3">
-                <img
-                  src={product.image_small_url}
-                  alt={product._id}
-                  height="1%"
-                  width="20%"
-                  className="align-self-center mr-3"
-                />
-                <Media.Body>
-                  <h6>
-                    {product.product_name} - <FontAwesomeIcon icon="box" />
-                    {" " + product.brands}
-                  </h6>
-                </Media.Body>
-              </Media>
-              <hr />
-            </>
+            <Media key={product._id} className="p-3">
+              <img
+                src={product.image_small_url}
+                alt={product._id}
+                height="1%"
+                width="20%"
+                className="align-self-center mr-3"
+              />
+              <Media.Body>
+                <h6>
+                  {product.product_name} - <FontAwesomeIcon icon="box" />
+                  {" " + product.brands}
+                </h6>
+              </Media.Body>
+            </Media>
           );
         })}
     </Container>
