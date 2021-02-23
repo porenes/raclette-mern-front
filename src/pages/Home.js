@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
+import { Button, Col, Jumbotron, Row } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { UidContext } from "../components/AppContext";
 import Timeline from "../components/Home/Timeline";
 import CreateParty from "../components/Party/CreateParty";
 import PartiesTimeline from "../components/Party/PartiesTimeline";
 import CreatePost from "../components/Post/CreatePost";
-import Container from "react-bootstrap/Container";
 import ProductsList from "../components/Products/ProductsList";
-import { Button, Col, Jumbotron, Row } from "react-bootstrap";
-
 const Home = () => {
   const uid = useContext(UidContext);
+
   return (
     <>
       {uid ? (

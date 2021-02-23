@@ -5,9 +5,9 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+import Connoisseurs from "../../pages/Connoisseurs";
 import Home from "../../pages/Home";
 import Parties from "../../pages/Parties.js";
-import Connoisseurs from "../../pages/Connoisseurs";
 import Profile from "../../pages/Profile";
 import Navigation from "../Navigation";
 

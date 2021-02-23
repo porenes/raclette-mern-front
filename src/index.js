@@ -15,7 +15,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { getUsersList as listUsers } from "./actions/user.actions";
 
 // Adding font awesome solid
 library.add(fas);
@@ -26,8 +25,6 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
-
-store.dispatch(listUsers());
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import moment from "moment";
-import { useSelector } from "react-redux";
-import Invite from "./Invite";
-import Card from "react-bootstrap/Card";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+import Modal from "react-bootstrap/Modal";
+import { useSelector } from "react-redux";
+import { isEmpty } from "../../Utils";
+import Invite from "./Invite";
 
 const PartyCard = ({ party }) => {
   const allUsers = useSelector((state) => state.userListReducer);
@@ -47,24 +48,25 @@ const PartyCard = ({ party }) => {
         </Modal.Header>
         <Modal.Body>
           <ListGroup>
-            {allUsers.map((user) => {
-              return (
-                <ListGroup.Item
-                  variant={
-                    party.guests.some((guest) => guest._id === user._id) &&
-                    "success"
-                  }
-                  key={user._id + party._id}
-                >
-                  {user.name} -
-                  {party.guests.some((guest) => guest._id === user._id) ? (
-                    "In"
-                  ) : (
-                    <Invite guestId={user._id} partyId={party._id} />
-                  )}
-                </ListGroup.Item>
-              );
-            })}
+            {!isEmpty(allUsers[0]) &&
+              allUsers.map((user) => {
+                return (
+                  <ListGroup.Item
+                    variant={
+                      party.guests.some((guest) => guest._id === user._id) &&
+                      "success"
+                    }
+                    key={user._id + party._id}
+                  >
+                    {user.name} -
+                    {party.guests.some((guest) => guest._id === user._id) ? (
+                      "In"
+                    ) : (
+                      <Invite guestId={user._id} partyId={party._id} />
+                    )}
+                  </ListGroup.Item>
+                );
+              })}
           </ListGroup>
         </Modal.Body>
       </Modal>
