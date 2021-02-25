@@ -29,11 +29,11 @@ const PostCard = ({ post }) => {
               className="rounded-circle border"
               height={36}
             />
-            <LinkContainer to={`/connoisseur/${post.authorId}`}>
-              <Media.Body className="align-self-center">
-                &nbsp;{author && author.name}
-              </Media.Body>
-            </LinkContainer>
+            <Media.Body className="align-self-center ml-1">
+              <LinkContainer to={`/connoisseur/${post.authorId}`}>
+                <a>{author && author.name}</a>
+              </LinkContainer>
+            </Media.Body>
             {uid === post.authorId && <DeletePost id={post._id} />}
           </Media>
         </Card.Title>
