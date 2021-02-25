@@ -19,7 +19,7 @@ function App() {
         //withCredentials: true,
       })
         .then((res) => {
-          console.log(res.data);
+          console.log("got uid");
           setUid(res.data.id);
         })
         .catch((err) => console.error("notoken"));

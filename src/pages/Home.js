@@ -11,44 +11,27 @@ const Home = () => {
   const uid = useContext(UidContext);
 
   return (
-    <>
-      {uid ? (
-        <>
-          <Container fluid="lg" className="pt-3">
-            <Row>
-              <Col sm={3} className="d-xs-none">
-                <ProductsList />
-              </Col>
-              <Col>
-                <CreatePost />
-                <Timeline />
-              </Col>
-              <Col lg={3} className="d-sm-none d-md-block">
-                <CreateParty />
-                <Container className="bg-light rounded p-2">
-                  <PartiesTimeline />
-                </Container>
-              </Col>
-            </Row>
-          </Container>
-        </>
-      ) : (
-        <>
-          <Jumbotron className="m-3">
-            <h1>Carpe Caseum </h1>
-            <p>
-              Il est temps de prendre le temps, d'apprécier les bonnes choses,
-              l'amitié, le partage. Raclette Party et l'antithèse du réseau
-              social tel qu'on le connait. Ici, il faut prendre son temps,
-              apprécier ses échanges, et se rencontrer.
-            </p>
-            <p>
-              <Button variant="primary">S'inscrire</Button>
-            </p>
-          </Jumbotron>
-        </>
-      )}
-    </>
+    uid && (
+      <>
+        <Container fluid="lg" className="pt-3">
+          <Row>
+            <Col sm={3} className="d-xs-none">
+              <ProductsList />
+            </Col>
+            <Col>
+              <CreatePost />
+              <Timeline />
+            </Col>
+            <Col lg={3} className="d-sm-none d-md-block">
+              <CreateParty />
+              <Container className="bg-light rounded p-2">
+                <PartiesTimeline />
+              </Container>
+            </Col>
+          </Row>
+        </Container>
+      </>
+    )
   );
 };
 
