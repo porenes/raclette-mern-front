@@ -1,4 +1,3 @@
-import { isElementOfType } from "react-dom/test-utils";
 import { LIST_PARTIES } from "../../src/actions/party.action";
 import partiesReducer from "../../src/reducers/parties.reducer";
 
